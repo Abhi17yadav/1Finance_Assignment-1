@@ -1,0 +1,51 @@
+﻿@model IEnumerable<Assignment_1.Models.Category>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+
+
+<p>
+    <a class="btn btn-outline-primary" asp-action="ExportExcel" asp-controller="Category">Export to Excel</a>
+    <a class="btn btn-outline-secondary" asp-action="ExportToCsv" asp-controller="Category">Export to Csv</a>
+    <a asp-action="Create" class="btn btn-outline-success float-lg-end">Add Category</a>
+</p>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>
+               @Html.DisplayNameFor(model => model.Category_Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Category_Name)
+              
+            </th>
+            <th>
+               @Html.DisplayNameFor(model => model.Category_Description)
+            </th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Category_Id)
+                </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Category_Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Category_Description)
+            </td>
+            <td>
+                    <a asp-action="Edit" asp-route-id="@item.Category_Id" class="btn btn-secondary">Edit</a> |
+                    <a asp-action="GetCategoryById" asp-route-id="@item.Category_Id" class="btn btn-info">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Category_Id" class="btn btn-danger">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
